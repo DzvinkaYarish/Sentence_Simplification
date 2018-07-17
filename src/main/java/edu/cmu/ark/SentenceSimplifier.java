@@ -30,6 +30,7 @@ package edu.cmu.ark;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -1499,8 +1500,8 @@ public class SentenceSimplifier {
 		if (GlobalProperties.getDebug())
 			System.err.println("Enter sentence: ");
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					System.in));
+			File file = new File("tree.txt");
+			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			if (treeInput) {
 				doc = "";
@@ -1514,6 +1515,7 @@ public class SentenceSimplifier {
 				Tree t = AnalysisUtilities.getInstance().readTreeFromString(doc);
 				for (Question q : ss.simplify(t)) {
 					System.out.println(AnalysisUtilities.getCleanedUpYield(q.getIntermediateTree()));
+					System.out.println("blaaa");
 				}
 				System.exit(0);
 			}
